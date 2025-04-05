@@ -1,0 +1,8 @@
+{
+    "_ARRAY_DIMENSIONS": [
+        "latitude"
+    ],
+    "crs": "EPSG:4326",
+    "resolution": -8.983111749910169e-05,
+    "units": "degrees_north"
+}
