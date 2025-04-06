@@ -52,7 +52,7 @@
                 <div class="row g-0">
                     <div class="col-6 ms-0 ps-0 pe-3">
                             <b>Residential type:</b>
-                        <select class="form-select" name="property-type" aria-label="Default select example" required>
+                        <select class="form-select" name="residential_type" aria-label="Default select example" required>
                             <option selected>Residential type</option>
                             <option value="" selected>--Options--</option>
                             <option value="Landed House">Landed House</option>
@@ -71,9 +71,9 @@
                 <div class="row g-0 map" style="height:80%">
                     <span class="fw-bold">Location:</span>
                     <div id="map"></div>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=drawing,places&callback=initMap" ></script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJArOGKcQAr8ZLPl1LLQOBOI-YGHCZuc8&libraries=drawing,places&callback=initMap" ></script>
                         <script
-                        src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap&libraries=drawing&v=weekly"
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJArOGKcQAr8ZLPl1LLQOBOI-YGHCZuc8&callback=initMap&libraries=drawing&v=weekly"
                         defer
                     ></script>
                     <input type="hidden" id = "location" name = "location">
@@ -83,7 +83,7 @@
                         <input class ='btn col-12 btn-outline-secondary opacity-50' type="reset" value="Reset">
                     </div>
                     <div class="col-6 p-2">
-                        <input class ='btn col-12 btn-purple' type="Submit" value="Submit">
+                        <button class ='btn col-12 btn-purple' id="nextbutton">Submit</button>
                     </div>
                 </div>
             </div>
