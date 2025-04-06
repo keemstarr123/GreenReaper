@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blueprint Floor Plan Renderer</title>
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+      background: #fff;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="floorplan" width="1000" height="800"></canvas>
+
+  <script>
+    const floorPlan = {
+      layout: [   {
+    "name": "Garage",
+    "type": "garage",
+    "x": 10,
+    "y": 10,
+    "width": 240,
+    "height": 240,
+    "outer_walls": ["top", "left"],
+    "doors": [
+      { "side": "right", "offset": 200, "swing": "right" }
+    ],
+    "fixtures": [],
+    "label_lines": ["GARAGE", "CONCRETE", "CLG @ 9'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Storage",
+    "type": "storage",
+    "x": 10,
+    "y": 254,
+    "width": 118,
+    "height": 100,
+    "outer_walls": ["left"],
+    "doors": [
+      { "side": "right", "offset": 50, "swing": "right" }
+    ],
+    "fixtures": [],
+    "label_lines": ["STORAGE", "LVP", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Bathroom 2",
+    "type": "bathroom",
+    "x": 132,
+    "y": 254,
+    "width": 118,
+    "height": 100,
+    "outer_walls": [],
+    "doors": [
+      { "side": "right", "offset": 50, "swing": "left" }
+    ],
+    "fixtures": [
+      { "type": "toilet", "x": 15, "y": 15 },
+      { "type": "sink", "x": 65, "y": 15 },
+      { "type": "tub", "x": 15, "y": 55 }
+    ],
+    "label_lines": ["BATHROOM 2", "TILE", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Bedroom 3",
+    "type": "bedroom",
+    "x": 10,
+    "y": 358,
+    "width": 240,
+    "height": 232,
+    "outer_walls": ["left", "bottom"],
+    "doors": [
+      { "side": "right", "offset": 180, "swing": "left" }
+    ],
+    "fixtures": [],
+    "label_lines": ["BEDROOM 3", "CARPET", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Hallway",
+    "type": "hallway",
+    "x": 254,
+    "y": 10,
+    "width": 80,
+    "height": 580,
+    "outer_walls": [],
+    "doors": [],
+    "fixtures": [],
+    "label_lines": ["HALLWAY", "LVP", "CLG @ 8'"],
+    "show_dimensions": false
+  },
+  {
+    "name": "Kitchen",
+    "type": "kitchen",
+    "x": 338,
+    "y": 10,
+    "width": 200,
+    "height": 160,
+    "outer_walls": ["top"],
+    "doors": [
+      { "side": "left", "offset": 120, "swing": "left" },
+      { "side": "right", "offset": 80, "swing": "right" }
+    ],
+    "fixtures": [
+      { "type": "sink", "x": 15, "y": 15 },
+      { "type": "stove", "x": 15, "y": 70 },
+      { "type": "fridge", "x": 150, "y": 15 }
+    ],
+    "label_lines": ["KITCHEN", "TILE", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Dining Room",
+    "type": "dining",
+    "x": 542,
+    "y": 10,
+    "width": 248,
+    "height": 160,
+    "outer_walls": ["top", "right"],
+    "doors": [
+      { "side": "left", "offset": 80, "swing": "left" }
+    ],
+    "fixtures": [],
+    "label_lines": ["DINING ROOM", "WOOD", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Living Room",
+    "type": "livingroom",
+    "x": 338,
+    "y": 174,
+    "width": 452,
+    "height": 200,
+    "outer_walls": ["right"],
+    "doors": [
+      { "side": "left", "offset": 100, "swing": "right" }
+    ],
+    "fixtures": [],
+    "label_lines": ["LIVING ROOM", "CARPET", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Bedroom 2",
+    "type": "bedroom",
+    "x": 338,
+    "y": 378,
+    "width": 200,
+    "height": 160,
+    "outer_walls": [],
+    "doors": [
+      { "side": "left", "offset": 80, "swing": "right" }
+    ],
+    "fixtures": [],
+    "label_lines": ["BEDROOM 2", "CARPET", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Bedroom 1",
+    "type": "bedroom",
+    "x": 542,
+    "y": 378,
+    "width": 248,
+    "height": 160,
+    "outer_walls": ["right"],
+    "doors": [
+      { "side": "left", "offset": 80, "swing": "right" },
+      { "side": "bottom", "offset": 61, "swing": "right" },
+      { "side": "bottom", "offset": 187, "swing": "left" }
+    ],
+    "fixtures": [],
+    "label_lines": ["BEDROOM 1", "CARPET", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Walk-in Closet",
+    "type": "closet",
+    "x": 542,
+    "y": 542,
+    "width": 122,
+    "height": 48,
+    "outer_walls": ["bottom"],
+    "doors": [
+      { "side": "top", "offset": 61, "swing": "left" }
+    ],
+    "fixtures": [],
+    "label_lines": ["WIC", "CARPET", "CLG @ 8'"],
+    "show_dimensions": true
+  },
+  {
+    "name": "Bathroom 1",
+    "type": "bathroom",
+    "x": 668,
+    "y": 542,
+    "width": 122,
+    "height": 48,
+    "outer_walls": ["right", "bottom"],
+    "doors": [
+      { "side": "top", "offset": 61, "swing": "right" }
+    ],
+    "fixtures": [
+      { "type": "toilet", "x": 15, "y": 10 },
+      { "type": "sink", "x": 65, "y": 10 }
+    ],
+    "label_lines": ["BATHROOM 1", "TILE", "CLG @ 8'"],
+    "show_dimensions": true
+  } ],
+      metadata: {
+        scale_m_px: 20,
+        wall_thickness_px: 4,
+        door_width_px: 20
+      }
+    };
+
+    const canvas = document.getElementById("floorplan");
+    const ctx = canvas.getContext("2d");
+
+    function drawRoom(room) {
+      ctx.lineWidth = floorPlan.metadata.wall_thickness_px;
+      ctx.strokeStyle = "#000";
+      ctx.strokeRect(room.x, room.y, room.width, room.height);
+
+      const labelLines = room.label ? room.label.split("\n") : [room.name];
+      ctx.fillStyle = "#000";
+      ctx.font = "12px sans-serif";
+      ctx.textAlign = "center";
+
+      labelLines.forEach((line, i) => {
+        ctx.fillText(
+          line,
+          room.x + room.width / 2,
+          room.y + room.height / 2 - 8 + i * 14
+        );
+      });
+
+      if (room.doors) {
+        room.doors.forEach(door => drawDoor(room, door));
+      }
+
+      if (room.fixtures) {
+        room.fixtures.forEach(fixture => drawFixture(room, fixture));
+      }
+    }
+
+    function drawDoor(room, door) {
+  const d = floorPlan.metadata.door_width_px;
+  const { x, y, width: w, height: h } = room;
+
+  // Draw the door line
+  ctx.strokeStyle = "#777";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+
+  switch (door.side) {
+    case "top":
+      ctx.moveTo(x + door.offset, y);
+      ctx.lineTo(x + door.offset + d, y);
+      break;
+    case "bottom":
+      ctx.moveTo(x + door.offset, y + h);
+      ctx.lineTo(x + door.offset + d, y + h);
+      break;
+    case "left":
+      ctx.moveTo(x, y + door.offset);
+      ctx.lineTo(x, y + door.offset + d);
+      break;
+    case "right":
+      ctx.moveTo(x + w, y + door.offset);
+      ctx.lineTo(x + w, y + door.offset + d);
+      break;
+  }
+
+  ctx.stroke();
+
+  // Draw the swing arc
+  drawDoorSwingArc(room, door);
+}
+function drawDoorSwingArc(room, door) {
+  const d = floorPlan.metadata.door_width_px;
+  const { x, y, width: w, height: h } = room;
+  const offset = door.offset || 0;
+  const swing = door.swing || "left";
+
+  ctx.beginPath();
+  ctx.strokeStyle = "#aaa";
+  ctx.lineWidth = 1;
+
+  let cx, cy, startAngle, endAngle;
+
+  switch (door.side) {
+    case "top":
+      cx = x + offset;
+      cy = y;
+      startAngle = swing === "left" ? Math.PI : 0;
+      endAngle = swing === "left" ? Math.PI * 1.5 : Math.PI * 0.5;
+      break;
+    case "bottom":
+      cx = x + offset;
+      cy = y + h;
+      startAngle = swing === "left" ? 0 : Math.PI;
+      endAngle = swing === "left" ? Math.PI * 0.5 : Math.PI * 1.5;
+      break;
+    case "left":
+      cx = x;
+      cy = y + offset;
+      startAngle = swing === "left" ? Math.PI * 1.5 : 0;
+      endAngle = swing === "left" ? 0 : Math.PI * 0.5;
+      break;
+    case "right":
+      cx = x + w;
+      cy = y + offset;
+      startAngle = swing === "left" ? Math.PI * 1.5 : Math.PI;
+      endAngle = swing === "left" ? Math.PI : Math.PI * 0.5;
+      break;
+  }
+
+  ctx.arc(cx, cy, d, startAngle, endAngle);
+  ctx.stroke();
+}
+
+
+    function drawFixture(room, fixture) {
+      const fx = room.x + fixture.x;
+      const fy = room.y + fixture.y;
+      const size = 10;
+
+      ctx.fillStyle = "#999";
+      switch (fixture.type) {
+        case "sink":
+        case "stove":
+        case "fridge":
+          ctx.fillRect(fx, fy, size, size);
+          break;
+        case "toilet":
+          ctx.beginPath();
+          ctx.arc(fx + size / 2, fy + size / 2, size / 2, 0, 2 * Math.PI);
+          ctx.fill();
+          break;
+        case "shower":
+        case "tub":
+          ctx.strokeRect(fx, fy, fixture.w || 30, fixture.h || 15);
+          break;
+      }
+    }
+
+    floorPlan.layout.forEach(drawRoom);
+  </script>
+</body>
+</html>
