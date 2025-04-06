@@ -241,7 +241,7 @@ document.getElementById('nextbutton').addEventListener('click', () => {
   <input type="hidden" name="budget" value = ${budget}>
   `
   const script = document.createElement('script');
-  script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCJArOGKcQAr8ZLPl1LLQOBOI-YGHCZuc8&libraries=drawing,places`;
+  script.src = `https://maps.googleapis.com/maps/api/js?key=&libraries=drawing,places`;
   script.async = true;
   script.defer = true;
   
