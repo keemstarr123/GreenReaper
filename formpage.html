@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+
+        body { 
+
+            background: linear-gradient(to bottom, #201F1F, #414287 ,#864377);
+            background-attachment: fixed;
+            font-family: sans-serif;
+
+        }
+        .form-container {
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0,0,0,0.3);
+    }
+    .left-panel {
+      background-color: #e0e0e0;
+      padding: 2rem;
+    }
+    .right-panel {
+      background: radial-gradient(circle at center, #000000, #1e002b, #1e003f);
+      color: white;
+      display: flex;
+      align-items: end;
+      justify-content: end;
+      padding: 1.5rem;
+    }
+    .icon {
+    border: 2px solid gray;
+    border-radius: 8px;
+    padding: 10px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon .material-icons {
+    font-size: 32px;
+    color: black;
+  }
+  .findings-box {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    width: fit-content;
+    font-family: sans-serif;
+  }
+
+    </style>
+
+</head>
+<body>
+
+    <nav class="navbar mx-auto rounded-pill" style="height: 70px; margin-top: 50px; background-color: #201F1F; width: 60%;">
+        <div class="container-fluid">
+        </div>
+      </nav>    
+
+    <div class="container-fluid " style="background-color: #252525B3 ; height: 750px; width: 90%; margin-top: 50px;  border-radius: 35px;  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); position: relative; padding: 0%;">
+        <!-- Left side -->
+        <div class="container-fluid" style="background-color: #F9F9F9B3; height: 750px; border-top-left-radius: 35px; border-bottom-left-radius: 35px; position: absolute; width: 50%;">
+            
+            <div class="findings-box">
+                <div class="icon">
+                    <span class="material-icons" style="font-size: 32px;">keyboard_return</span>
+                </div>
+                <div class="text">
+                  <h2 >Get Started</h2>
+                  <p>Enter the details below</p>
+                </div>
+                
+              </div>
+              <div>
+                <div class="container-fluid">
+                    <div class="row g-4 align-items-end">
+                      <!-- Residential Type -->
+                      <div class="col-md-6">
+                        <label for="resType" class="form-label fw-bold">Residential type:</label>
+                        <select id="resType" class="form-select rounded-3 border-2 shadow-sm" style="height: 50px;">
+                          <option selected>Select an option</option>
+                          <option>1 Room</option>
+                          <option>2 Room</option>
+                          <option>3 Room</option>
+                          <option>4 Room</option>
+                          <option>5 Room</option>
+                        </select>
+                      </div>
+                  
+                      <!-- Budget -->
+                      <div class="col-md-6">
+                        <label for="budget" class="form-label fw-bold">Budget:</label>
+                        <input type="text" id="budget" class="form-control rounded-3 border-2 shadow-sm" placeholder="RM" style="height: 50px;">
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                <h6 style="font-weight: bold; margin-left: 13px;">Location:</h6>
+
+              </div>
+
+              
+
+
+
+        </div>
+        <!-- Right side -->
+            <div class="container-fluid" style="min-height: 100vh; border-top-right-radius: 35px; border-bottom-right-radius: 35px; position: absolute; width: 50%; right: 0; overflow-y: auto;">
+
+            
+
+                  
+            
+            </div>
+            
+    </div>
+
+</body>
+</html>
